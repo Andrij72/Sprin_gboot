@@ -12,7 +12,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserRepositoryServiceImpl implements UserRepositoryService {
 
-    private final UserRepository repository = null;
+    private  UserRepository repository ;
+
+    @Override
+    public void saveUser(User user) {
+
+    }
+
+    @Override
+    public void updateUser(User user) {
+
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+
+    }
 
     @Override
     public List<User> getUsersByBirthday(int month, int day) {
