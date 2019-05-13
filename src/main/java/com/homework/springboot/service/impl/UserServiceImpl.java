@@ -16,12 +16,6 @@ public class UserServiceImpl implements UserService  {
 
     @Override
     public void saveUser(User user) {
-
-    }
-
-    @Override
-    public void deleteUser(Long id) {
-
     }
 
     @Override
@@ -30,8 +24,6 @@ public class UserServiceImpl implements UserService  {
     }
 
     @Override
-    public void deleteUser(Integer id) {
-
+    public void deleteUser(Long id) {
     }
-
 }

@@ -22,16 +22,14 @@ public class TaskApplicationTests {
     @Autowired
     private UserService service;
 
-    private User user;
-
     @Before
     public void setUp() {
-        user = new User();
-                user.setName("Andrew");
-                user.setAge(30);
-                user.setEmail("akulmm@gmail.com");
-                user.setBirthday(LocalDate.of(1989, 12, 18));
-        service.saveUser(user);
+       User u = new User();
+                u.setName("Andrew");
+                u.setAge(30);
+                u.setEmail("akulmm@gmail.com");
+                u.setBirthday(LocalDate.of(1989, 12, 18));
+        service.saveUser(u);
     }
 
     @After
@@ -41,12 +39,12 @@ public class TaskApplicationTests {
 
     @Test
     public void createUserTest() {
-        User student = new User();
-                user.setName("Gorge");
-                user.setAge(40);
-                user.setEmail("gorge@gmail.com");
-                user.setBirthday(LocalDate.of(1979, 05, 25));
+        User u = new User();
+                u.setName("Gorge");
+                u.setAge(40);
+                u.setEmail("gorge@gmail.com");
+                u.setBirthday(LocalDate.of(1979, 05, 25));
         service.saveUser(student);
-        assertTrue(String.valueOf((service.getUsersByBirthday(05,21).contains(user))),true);
+        assertTrue(String.valueOf((service.getUsersByBirthday(05,21).contains(u))),true);
     }
 }

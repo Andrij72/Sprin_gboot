@@ -7,9 +7,7 @@ import java.util.List;
 public interface UserService {
     void saveUser(User user);
 
-    void deleteUser(Long id);
-
     List<User> getUsersByBirthday(int month, int day);
 
-    void deleteUser(Integer id);
+    void deleteUser(Long id);
 }

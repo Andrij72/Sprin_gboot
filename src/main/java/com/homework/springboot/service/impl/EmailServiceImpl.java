@@ -27,8 +27,9 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject(subject);
             helper.setText(text);
             this.emailSender.send(message);
-        } catch (MessagingException e) {
-            throw new WRuntimeException(e);
+            log.info("Ok, normal completion");
+        } catch (WRuntimeException e) {
+            log.error("Catch error" + e);
         }
     }
 }

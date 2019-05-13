@@ -21,7 +21,6 @@ public class SchedulerService {
 
     private final EmailService emailService;
 
-   // @Scheduled(cron = CRON)
     @Scheduled(cron="${cronExpression}")
     public void sendMailToUsers() throws WRuntimeException {
         LocalDate date = LocalDate.now();
