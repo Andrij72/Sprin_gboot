@@ -1,7 +1,7 @@
 package com.homework.springbot;
 
 import com.homework.springboot.model.User;
-import com.homework.springboot.service.UserRepositoryService;
+import com.homework.springboot.service.UserService;
 import lombok.NoArgsConstructor;
 import org.junit.After;
 import org.junit.Before;
@@ -20,17 +20,17 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 public class TaskApplicationTests {
 
     @Autowired
-    private UserRepositoryService service;
+    private UserService service;
 
     private User user;
 
     @Before
     public void setUp() {
-        user = new User()
-                .setName("Andrew")
-                .setAge(30)
-                .setEmail("akulmm@gmail.com")
-                .setBirthday(LocalDate.of(1989, 12, 18));
+        user = new User();
+                user.setName("Andrew");
+                user.setAge(30);
+                user.setEmail("akulmm@gmail.com");
+                user.setBirthday(LocalDate.of(1989, 12, 18));
         service.saveUser(user);
     }
 
@@ -41,11 +41,11 @@ public class TaskApplicationTests {
 
     @Test
     public void createUserTest() {
-        User student = new User()
-                .setName("Gorge")
-                .setAge(40)
-                .setEmail("gorge@gmail.com")
-                .setBirthday(LocalDate.of(1979, 05, 25));
+        User student = new User();
+                user.setName("Gorge");
+                user.setAge(40);
+                user.setEmail("gorge@gmail.com");
+                user.setBirthday(LocalDate.of(1979, 05, 25));
         service.saveUser(student);
         assertTrue(String.valueOf((service.getUsersByBirthday(05,21).contains(user))),true);
     }

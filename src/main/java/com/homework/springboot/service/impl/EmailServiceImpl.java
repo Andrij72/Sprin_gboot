@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void send(String to, String subject, String text) {
+    public void send(String to, String subject, String text) throws WRuntimeException {
         MimeMessage message = this.emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
@@ -27,8 +27,8 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject(subject);
             helper.setText(text);
             this.emailSender.send(message);
-        } catch (MessagingException messageException) {
-            throw new RuntimeException(messageException);
+        } catch (MessagingException e) {
+            throw new WRuntimeException(e);
         }
     }
 }

@@ -2,6 +2,7 @@ package com.homework.springboot.service;
 
 import com.homework.springboot.model.User;
 
+import com.homework.springboot.service.impl.WRuntimeException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SchedulerService {
 
-    private static final String CRON = "*/10 * * * * *";
+    private final UserService userService;
 
-    private  final UserRepositoryService userService;
+    private final EmailService emailService;
 
-    private  final EmailService emailService;
-
-    @Scheduled(cron = CRON)
-    public void sendMailToUsers() {
+   // @Scheduled(cron = CRON)
+    @Scheduled(cron="${cronExpression}")
+    public void sendMailToUsers() throws WRuntimeException {
         LocalDate date = LocalDate.now();
         int month = date.getMonthValue();
         int day = date.getDayOfMonth();
@@ -33,10 +33,10 @@ public class SchedulerService {
                 try {
                     String message = "Happy Birthday dear " + user.getName() + "!";
                     emailService.send(user.getEmail(), "Happy Birthday!", message);
-                   log.info("Email have been sent. User id: {}, Date: {}", user.getId());
+                    log.info("Email have been sent. User id: {}, Date: {}", user.getId());
                 } catch (Exception e) {
                     log.error("Email can't be sent.User's id: {}, Error: {}", user.getId(), e.getMessage());
-                  log.error("Email can't be sent", e);
+                    log.error("Email can't be sent", e);
                 }
             }
         }
